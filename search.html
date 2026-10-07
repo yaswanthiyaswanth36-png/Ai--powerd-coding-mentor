@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+<h2>Search Books</h2>
+<form method="get">
+<input name="q" value="{{ q }}" placeholder="Title, author or category">
+<button>Search</button>
+</form>
+<table>
+<tr><th>Title</th><th>Author</th><th>Category</th><th>Available Copies</th></tr>
+{% for book in books %}
+<tr><td>{{ book.title }}</td><td>{{ book.author }}</td><td>{{ book.category }}</td><td>{{ book.available_copies }}</td></tr>
+{% else %}
+<tr><td colspan="4">No books found.</td></tr>
+{% endfor %}
+</table>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Librarian Dashboard</h2>
+<div class="card">
+<h3>Book Catalogue</h3>
+<table>
+<tr><th>Title</th><th>Author</th><th>Category</th><th>Total</th><th>Available</th><th>Actions</th></tr>
+{% for book in books %}
+<tr>
+<td>{{ book.title }}</td><td>{{ book.author }}</td><td>{{ book.category }}</td>
+<td>{{ book.total_copies }}</td><td>{{ book.available_copies }}</td>
+<td>
+<a href="{{ url_for('edit_book', book_id=book.id) }}">Edit</a> |
+<a href="{{ url_for('delete_book', book_id=book.id) }}" onclick="return confirm('Delete this book?')">Delete</a>
+{% if book.available_copies > 0 %}
+<form class="inline" method="post" action="{{ url_for('issue_book', book_id=book.id) }}">
+<input name="student_username" placeholder="student1" required>
+<button type="submit">Issue</button>
+</form>
+{% endif %}
+</td>
+</tr>
+{% endfor %}
+</table>
+</div>
+
+<div class="card">
+<h3>Issue / Return Records</h3>
+<table>
+<tr><th>Book</th><th>Student</th><th>Issue Date</th><th>Due Date</th><th>Return Date</th><th>Fine</th><th>Action</th></tr>
+{% for item in issues %}
+<tr>
+<td>{{ item.title }}</td><td>{{ item.username }}</td><td>{{ item.issue_date }}</td>
+<td>{{ item.due_date }}</td><td>{{ item.return_date or 'Not returned' }}</td>
+<td>₹{{ item.fine }}</td>
+<td>{% if not item.return_date %}
+<form method="post" action="{{ url_for('return_book', issue_id=item.id) }}"><button>Return</button></form>
+{% else %}Completed{% endif %}</td>
+</tr>
+{% endfor %}
+</table>
+</div>
+{% endblock %}

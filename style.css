@@ -1,0 +1,16 @@
+body{font-family:Arial,sans-serif;margin:0;background:#f4f6f8;color:#222}
+nav{background:#263238;color:white;padding:15px;display:flex;gap:20px;align-items:center}
+nav a{color:white;text-decoration:none;font-weight:bold}
+nav span{margin-left:auto}
+main{max-width:1100px;margin:30px auto;padding:0 15px}
+.card{background:white;padding:22px;margin-bottom:20px;border-radius:10px;box-shadow:0 2px 8px #ddd}
+.login{max-width:400px;margin:60px auto}
+label{display:block;margin-top:12px;font-weight:bold}
+input{padding:9px;margin:6px 0;width:95%;box-sizing:border-box}
+button{padding:8px 14px;border:0;border-radius:5px;cursor:pointer}
+table{width:100%;border-collapse:collapse;margin-top:15px}
+th,td{padding:10px;border:1px solid #ddd;text-align:left}
+th{background:#eceff1}
+.messages{background:#fff3cd;padding:12px;margin-bottom:15px;border-radius:6px}
+.inline{display:inline-flex;gap:4px;margin-left:8px}
+.inline input{width:110px}

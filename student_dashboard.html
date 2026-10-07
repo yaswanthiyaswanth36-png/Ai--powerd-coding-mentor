@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Student Dashboard</h2>
+<div class="card">
+<h3>Currently Issued Books</h3>
+{% if issued %}
+<table>
+<tr><th>Book</th><th>Author</th><th>Issue Date</th><th>Due Date</th><th>Action</th></tr>
+{% for item in issued %}
+<tr>
+<td>{{ item.title }}</td><td>{{ item.author }}</td><td>{{ item.issue_date }}</td><td>{{ item.due_date }}</td>
+<td><form method="post" action="{{ url_for('return_book', issue_id=item.id) }}"><button>Return</button></form></td>
+</tr>
+{% endfor %}
+</table>
+{% else %}<p>No books are currently issued.</p>{% endif %}
+</div>
+
+<div class="card">
+<h3>Available Catalogue</h3>
+<table>
+<tr><th>Title</th><th>Author</th><th>Category</th><th>Available Copies</th></tr>
+{% for book in books %}
+<tr><td>{{ book.title }}</td><td>{{ book.author }}</td><td>{{ book.category }}</td><td>{{ book.available_copies }}</td></tr>
+{% endfor %}
+</table>
+</div>
+{% endblock %}
